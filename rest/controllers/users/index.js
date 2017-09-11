@@ -21,11 +21,13 @@ class UserMain {
     //   .sort({ createdAt: '-1' })
     //   .skip(Number(skip))
     //   .limit(Number(pageSize));
+    ctx.status = 200;
     return ctx.success({ data: { 
-        title: 'Hello Worlds'
+        title: 'Hello World'
      } });
 
   }
 }
 
-export default UserMain;
+// export default UserMain;
+module.exports = UserMain;

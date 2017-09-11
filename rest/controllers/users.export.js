@@ -1,5 +1,6 @@
 const UserMain = require('./users/index');
 
-export {
-  UserMain
-}
+// export {
+//   UserMain
+// }
+module.exports = UserMain;
