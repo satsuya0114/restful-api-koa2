@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const BodyParser =  require('koa-bodyparser');
 const router = require('koa-router')();
-const userRouter = require('./rest/index');
+const {userRouter, deviceRouter} = require('./rest/index');
 
 const app = new Koa().use(BodyParser());
 const port = 8080;
@@ -17,6 +17,9 @@ app.listen(port , () => {
 app.use(require('./rest/middlewares/response'));
 app.use(require('./rest/middlewares/filter'));
 app.use(userRouter.routes())
-  .use(userRouter.allowedMethods());
+   .use(userRouter.allowedMethods())
+   .use(deviceRouter.routes())
+   .use(deviceRouter.allowedMethods());
+
 
 module.exports = app;

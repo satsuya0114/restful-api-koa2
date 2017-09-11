@@ -10,10 +10,11 @@ router.all('/api/*', async (ctx,next)=>{
 router
   .get('/api/users/getDevices', UserMain.get_info)
   .get('/api/users/getInfo', UserMain.get_info)
-  .get('/hello', getMessage);
+  .get('/hello/:id', getMessage);
 
 function* getMessage() {
   this.body = 'Your request has been logged.';
+  console.log(this.params);
   console.log(this.response);
 }
 

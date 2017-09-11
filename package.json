@@ -21,6 +21,8 @@
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-jwt": "^3.2.2",
-    "koa-router": "^7.2.1"
+    "koa-router": "^7.2.1",
+    "mysql2": "^1.4.2",
+    "sequelize": "^4.8.2"
   }
 }
