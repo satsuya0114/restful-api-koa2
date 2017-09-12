@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/satsuya0114/restful-api-koa2#readme",
   "dependencies": {
+    "config": "^1.26.2",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-jwt": "^3.2.2",

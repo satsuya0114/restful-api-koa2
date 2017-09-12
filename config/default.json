@@ -1,0 +1,12 @@
+{
+  "dev": {
+    "dbConfig": {
+      "host": "aurora-dev.nice-cam.com",
+      "port": 3306,
+      "dbName": "nice",
+      "user": "nicecam20",
+      "password": "nicecamera20",
+      "dialect": "mysql"
+    }
+  }
+}

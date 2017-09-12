@@ -15,7 +15,9 @@ const sequelize = new Sequelize('nice', 'nicecam20', 'nicecamera20', {
 
 // load models                 
 const models = [
-  'device'
+  'device',
+  'deviceAttribute',
+  'sceneMode'
   // 'SequelizeMeta',
   // 'userr'
 ];

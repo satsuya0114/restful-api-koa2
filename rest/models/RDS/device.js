@@ -3,8 +3,9 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('device', {
     device_id: {
-      type: "BINARY(16)",
-      allowNull: true
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true
     },
     device_name: {
       type: DataTypes.STRING(100),
@@ -15,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     device_owner: {
-      type: "BINARY(16)",
+      type: DataTypes.TEXT,
       allowNull: true
     },
     scenemode_id: {
