@@ -1,61 +1,15 @@
-const RDSmodels = require('../../models/RDS');
+const DeviceMain = require('./deviceMain');
+const router = require('koa-router')();
 
-class DeviceMain {
-  // get info
-  static async get_detail(ctx) {
-    let { id, pageSize, current } = ctx.query;
-    const data = await ArticleModel
-      .findById(id)
-      .populate('author', { password: 0 })
-      .populate('comments');
-    if (!data) return ctx.error({ msg: '获取详情数据失败!' });
+//https://stackoverflow.com/questions/18642828/origin-http-localhost3000-is-not-allowed-by-access-control-allow-origin
+router.all('/api/*', async (ctx, next) => {
+  ctx.set("Access-Control-Allow-Origin", "*");
+  await next();
+});
 
-    const review = data.review + 1;
-    const updateview = await ArticleModel.findByIdAndUpdate(data.id, { $set: { review } });
+router
+  .get('/Devices/:device_id', DeviceMain.Devices);
+  // .get('/api/users/getInfo', UserMain.get_info);
 
-    if (!current) current = 1;
-    if (!pageSize) pageSize = 10;
-    const skip = (Number(current) - 1) * Number(pageSize);
-    const totals = await CommentModel.find({ article_id: id }).count();
 
-    const comments = await CommentModel
-      .find({ article_id: id })
-      .sort({ createdAt: '-1' })
-      .skip(Number(skip))
-      .limit(Number(pageSize));
-    return ctx.success({ data: { data, comments, totals, current } });
-
-  }
-
-  static async Devices(ctx) {
-    
-    async function linkDB() {
-      return new Promise((rs, rj) => {
-        // setTimeout(() => {
-        //   rs('hi');
-        // }, 5000);
-        RDSmodels.device.findAll({ raw: true }).then((dbResult) => {
-          console.log(`dbResult: ${dbResult}`);
-          rs(dbResult);
-        }).catch((err) => {
-          console.log('RDSmodels error');
-          rj(err);
-        });
-      })
-    }
-    const dbResult = await linkDB();
-    ctx.status = 200;
-    return ctx.success({
-      data: {
-        title: 'Hello World',
-        device_id: ctx.params.device_id,
-        dbResult: dbResult
-      },
-      msg: 'hello'
-    });
-
-  }
-}
-
-// export default UserMain;
-module.exports = DeviceMain;
+module.exports = router;
